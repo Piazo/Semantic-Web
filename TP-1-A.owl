@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#"
+     xml:base="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_genre -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_genre">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#genre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_nationalite -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_nationalite">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#nationalite"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#a_comme_acteur -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#a_comme_acteur">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#artiste"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#continent_contient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#continent_contient">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#continent"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#deroulement_film -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#deroulement_film">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#est_capitale -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#est_capitale">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#se_situe_dans"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#ville"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#est_pays_de -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#est_pays_de">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#continent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#est_ville_de -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#est_ville_de">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#ville"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#joue_dans -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#joue_dans">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#artiste"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays_contient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays_contient">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#ville"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#realise_par -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#realise_par">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#realisateur"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#se_situe_dans -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#se_situe_dans">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#duree -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#duree">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#note -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#note">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#acteur -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#acteur">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#joue_dans"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_genre"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#artiste"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#actrice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#actrice">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#joue_dans"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_genre"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#feminin"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#artiste"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#artiste -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#artiste">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#continent -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#continent">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#court_metrage -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#court_metrage">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#duree"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</xsd:maxExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#long_metrage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#europeenne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#europeenne">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#nationalite"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#femme -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#femme">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_genre"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#feminin"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film_europeen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film_europeen">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#europeenne"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#genre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#genre"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#homme -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#homme">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#A_pour_genre"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#long_metrage -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#long_metrage">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#duree"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#film"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#nationalite -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#nationalite"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#pays">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#ville"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#realisateur -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#realisateur">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#personne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#ville -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#ville">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#lieu"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Berenice_Bejo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Berenice_Bejo">
+        <A_pour_genre rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#feminin"/>
+        <joue_dans rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#The_artist"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Europe -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Europe"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#France -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#France">
+        <est_pays_de rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Europe"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Jean_Dujardin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Jean_Dujardin">
+        <A_pour_genre rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin"/>
+        <joue_dans rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#The_artist"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Michel_Hazanavicius -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Michel_Hazanavicius">
+        <A_pour_genre rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Midnight_in_Paris -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Midnight_in_Paris">
+        <realise_par rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Woody_Allen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Paris -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Paris"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#The_artist -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#The_artist">
+        <realise_par rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Michel_Hazanavicius"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Woody_Allen -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#Woody_Allen">
+        <A_pour_genre rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#feminin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#feminin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#masculin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alaverdo/ontologies/2022/2/untitled-ontology-3#genre"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
