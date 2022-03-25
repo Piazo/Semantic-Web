@@ -1,0 +1,98 @@
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>SPARQLUEDO</title>
+		<link rel="icon" href="media/muffin-favicon.ico" />
+
+		<link rel="stylesheet" href="media/codemirror/lib/codemirror.css">
+		<script src="media/codemirror/lib/codemirror.js"></script>
+		<script src="media/codemirror/mode/turtle/turtle.js"></script>
+		<script src="media/codemirror/mode/sparql/sparql.js"></script>
+		<script src="media/codemirror/mode/xml/xml.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="media/base.css" />
+		<link rel="stylesheet" type="text/css" href="media/style.css" />
+		<script type="text/javascript" src="media/jquery.js"></script>
+		<script type="text/javascript" src="media/script.js"></script>
+
+	</head>
+
+	<body>
+
+		<div id="consignes">
+			<h1>SPARQLUEDO</h1>
+			<p>Dans ce TP vous devrez résoudre une enquête au moyen de requêtes SPARQL.</p>
+			<p>Vos requêtes seront basées sur une ontologie à laquelle <a href="sparqluedo.owl">vous avez accès</a>. Par contre, vous ignorez les données peuplant cette ontologie et ne pourrez les découvrir qu'au travers du endpoint SPARQL.</p>
+			<p>Pour chaque requête que vous devrez formuler, vous trouverez un extrait de l'ontologie contenant les informations utiles à la rédaction de la requête. Vous pouvez également explorer l'ontologie avec Protege.</p>
+			<p>Lorsqu'une requête doit retourner une ou plusieurs ressources, pensez également à retourner un label (lorsque celui-ci existe) pour chaque ressource.</p>
+			<p>Ce TP se déroule entièrement au sein d'une interface Web dans laquelle vous pourrez rédiger et exécuter vos requêtes SPARQL. Notez cependant que vos requêtes ne sont pas enregistrées au fur et à mesure que vous les rédigez&nbsp;; c'est à vous de noter dans un rapport que vous nous enverrez ensuite.</p>
+			<form>
+				Binôme 1&nbsp;:
+				<input type="text" id="binome1" placeholder="nom du binôme 1" size="30">
+				<br>
+				Binôme 2&nbsp;:
+				<input type="text" id="binome2" placeholder="nom du binôme 2" size="30">
+				<br>
+			</form>
+			<button id="commencer">Commencer</button>
+		</div>
+
+		<div id="enquete">
+
+			<h1>SPARQLUEDO</h1>
+
+			<div id="intro">
+				<p>Par une sombre nuit d'hiver, <span id="hero1">Pli</span> et <span id="hero2">Plo</span> affrontent le froid et le brouillard pour se rendre à la demeure du <b>Professeur Chabalet</b>. Ils ont été appelés d'urgence car un horrible drame est survenu. Tout ce qu'ils ont compris lors de la communication téléphonique avec le professeur affolé, c'est qu'un meurtre a été commis, et que l'assassin se trouve encore dans la maison.</p>
+				<p>Ils arrivent maintenant sur place pour élucider cette nouvelle affaire...</p>
+			</div>
+
+
+			<div id="questions">
+				<div id="nav">
+					<span id="questpred">&lt;</span>    <span id="questsuiv">&gt;</span>
+					<p>Question <span id="numquestion"></span>&nbsp;:</p>
+				</div>
+				<div id="infoquestion">
+					<div id="info"></div>
+					<div id="question"></div>
+				</div>
+			</div>
+
+			<div id="ontology">
+				Extrait de l'ontologie
+				<form><textarea id="codeturtle"></textarea></form>
+			</div>
+
+
+			<div id="sparqlquery">
+				Votre requête SPARQL
+				<form>
+					<textarea id="codesparql" name="codesparql">PREFIX : <http://www.lamaisondumeurtre.fr#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT * WHERE
+{
+	?a ?b ?c.
+}
+LIMIT 10</textarea>
+				SPARQL endpoint&nbsp;:
+				<input type="text" id="sparqlendpoint" value="http://localhost:3030/sparqluedo/query" size="70">
+				<br>
+				</form>
+			</div>
+			<button id="executeSparqlButton">Lancer la requête</button>
+			<div id="response">
+				Réponse à la requête
+				<form><textarea id="codexml" name="codexml"></textarea></form>
+			</div>
+
+		</div>
+
+
+
+	</body>
+</html>

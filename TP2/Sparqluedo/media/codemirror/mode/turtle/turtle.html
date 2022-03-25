@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CodeMirror: Turtle mode</title>
+    <link rel="stylesheet" href="codemirror.css">
+    <script src="codemirror-compressed.js"></script>
+    <script src="turtle.js"></script>
+    <style>.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
+    <link rel="stylesheet" href="oc/docs.css">
+  </head>
+  <body>
+    <h1>CodeMirror: Turtle mode</h1>
+    <form><textarea id="code" name="code">
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://purl.org/net/bsletten> 
+    rdf:type foaf:Person;
+    foaf:birthday "5-26";
+    foaf:based_near [
+        geo:lat "34.0736111" ;
+        geo:lon "-118.3994444"
+   ]
+
+</textarea></form>
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/turtle",
+        tabMode: "indent",
+        matchBrackets: true
+      });
+    </script>
+
+    <p><strong>MIME types defined:</strong> <code>text/turtle</code>.</p>
+
+  </body>
+</html>

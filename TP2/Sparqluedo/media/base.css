@@ -1,0 +1,93 @@
+/* --- STYLES DE BASE --- */
+/* inspiré de http://www.alsacreations.com/astuce/lire/654-feuille-de-styles-de-base.html */
+
+/* Page */
+html {
+  font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
+}
+body {
+  margin: 0;
+  padding: 1em; /* Remettre à zéro si nécessaire. */
+  /* Pensez à utiliser une collection de polices (2), par ex:*/
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em; /* À adapter pour la police choisie. (3) */
+  line-height: 1.4; /* À adapter au design. (4) */
+  color: white;
+  /*background: url('ron_blood_032.png') repeat scroll 0 0 black;*/
+  background: black;
+}
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+  margin: 1em 0 .5em 0; /* Rapproche le titre du texte. (5) */
+  line-height: 1.2;
+  font-weight: normal; /* Valeur par défaut. (6) */
+  font-style: normal;
+
+  font:30px/30px Georgia, "Times New Roman", Times, serif;
+  color:#777;
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.25em;
+}
+h4 {
+  font-size: 1em;
+}
+
+/* Listes */
+ul, ol {
+  margin: .75em 0 .75em 32px;
+  padding: 0;
+}
+
+/* Paragraphes */
+p {
+  margin: .75em 0; /* Marges plus faibles que par défaut. (7) */
+}
+address {
+  margin: .75em 0;
+  font-style: normal;
+}
+
+/* Liens */
+a {
+  text-decoration: underline;
+}
+a:link {
+  color: #11C;
+}
+a:visited {
+  color: #339;
+}
+a:hover, a:focus, a:active {
+  color: #00F;
+}
+
+/* Pas de bordure autour des images dans les liens */
+a img {
+  border: none;
+}
+
+/* Divers éléments de type en-ligne (8) */
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+
+/* Formulaires */
+form, fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+input, button, select {
+  vertical-align: middle; /* Solution pb. d'alignement. (9) */
+}

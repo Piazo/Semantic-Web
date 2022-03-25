@@ -1,0 +1,86 @@
+#intro {
+	margin: 20px 20px 20px 60px;
+	font-style: italic;
+}
+
+#consignes {
+	width: 80%;
+	margin: 0 auto;
+	padding: 30px;
+	background-color: rgba(66, 22, 22, 0.85);
+	border-radius: 30px;
+}
+
+#enquete {
+	display: none;
+	width: 80%;
+	margin: 0 auto;
+	padding: 30px;
+	background-color: rgba(66, 22, 22, 0.85);
+	border-radius: 30px;
+}
+
+h1 {
+	font-family: Tahoma, Geneva, Kalimati, sans-serif;
+	font-weight: bold;
+}
+
+#info {
+	padding-left: 10px;
+	border-left: solid 4px white;
+}
+
+#questions {
+	vertical-align: top;
+	display: inline-block;
+	width: 45%;
+}
+
+#nav p{
+	font-size: 1.5em;
+	margin-top: 0;
+}
+
+#questpred, #questsuiv {
+	font-size: 3em;
+	font-family: Tahoma, Geneva, Kalimati, sans-serif;
+}
+
+#questpred:hover, #questsuiv:hover {
+	cursor:  pointer;
+}
+
+#question {
+	font-weight: bold;
+}
+
+#ontology {
+	display: inline-block;
+	margin-left: 4%;
+	width: 50%;
+}
+
+.CodeMirror {
+    background-color: #E4CA95;
+}
+
+.CodeMirror {
+	/*border-top: 1px solid white;
+	border-bottom: 1px solid white;*/
+    height: auto;
+}
+
+.CodeMirror-scroll {
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: auto;
+}
+
+#sparqlquery .CodeMirror-scroll, #response .CodeMirror-scroll {
+    min-height: 200px;
+}
+
+.uri {
+	font-family: Monaco, "DejaVu Sans Mono", "Lucida Console", "Andale Mono", monospace;
+	font-size: .8em;
+}

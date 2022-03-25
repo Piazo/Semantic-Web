@@ -1,0 +1,266 @@
+Combien y a-t-il de pièces dans la maison?
+
+SELECT ?piece WHERE
+{
+	<http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>
+    :maisonContientPiece ?piece.
+}
+LIMIT 10
+
+Il y a 9 pieces
+
+--------------------------------------------------------------------------------
+
+Combien y a-t-il de personnes dans la maison?
+
+SELECT COUNT(?Personne) WHERE
+{
+	?Personne a :Personne;
+               rdfs:label ?nom;
+               :personneDansPiece ?piece.
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>
+  
+}
+LIMIT 10
+
+Il y a 10 personnes dans la maison du meurtre
+
+--------------------------------------------------------------------------------
+
+Qui est la victime?
+
+SELECT ?Personne WHERE
+{
+	?Personne a :Personne;
+               rdfs:label ?nom;
+               :personneDansPiece ?piece;
+                :estVivant false.
+  	?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.        
+}
+LIMIT 10
+
+C'est le pauvre 0c7gdr7 qui s'est fait buté
+
+--------------------------------------------------------------------------------
+
+Donnez la liste des suspects.
+
+SELECT ?Personne WHERE
+{
+	?Personne a :Personne;
+               rdfs:label ?nom;
+               :personneDansPiece ?piece;
+                :estVivant true.
+  	?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.        
+}
+LIMIT 10
+
+Suspects : LucieNuzyte, VanessaLami, SophieStulle, PaulOchon, GuyTarsaich, 
+             GladisTileri, ArmandChabalet, AubinGladeche, EmmaNiolia.
+            
+--------------------------------------------------------------------------------
+
+Dans quelle pièce se situe la victime?
+
+SELECT ?piece WHERE
+{
+  	?Personne a :Personne;
+               rdfs:label ?nom;
+               :personneDansPiece ?piece;
+                :estVivant false
+                .
+  	?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.  
+}
+LIMIT 10
+
+La victime se situe dans la chambre
+
+--------------------------------------------------------------------------------
+
+Y a-t-il d'autres personnes dans cette pièce? (tranformez la requête précédante; utilisez ASK)
+
+ASK
+{
+  <http://www.lamaisondumeurtre.fr/instances#0c7gdr7> :personneDansPiece ?piece.
+  ?personne :personneDansPiece ?piece.
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+  Filter(!sameterm(?personne, <http://www.lamaisondumeurtre.fr/instances#0c7gdr7>)).
+}
+LIMIT 10
+
+Il n'y a personne d'autre dans la piece.
+
+--------------------------------------------------------------------------------
+
+Listez les personnes dans chaque pièce.
+
+SELECT ?piece GROUP_CONCAT(?personne) WHERE
+{
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+  ?personne :personneDansPiece ?piece.
+}GROUPBY ?piece
+LIMIT 10
+
+SalleAManger : PaulOchon GuyTarsaich
+Hall : SophieStulle
+Toilette : EmmaNiolia
+Salon : LucieNuzyte ArmandChabalet
+SalleDeBain : GladisTileri
+Chambre : 0c7gdr7
+Bureau : VanessaLami AubinGladeche
+
+--------------------------------------------------------------------------------
+
+Combien y a-t-il de personnes dans chaque pièce (contenant au moins une personne)?
+
+SELECT COUNT(?piece) GROUP_CONCAT(?personne) WHERE
+{
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+  ?personne :personneDansPiece ?piece.
+}GROUPBY ?piece
+LIMIT 10
+
+--------------------------------------------------------------------------------
+
+Quelle(s) pièce(s) contien-nen-t au moins deux personnes? (piste: utilisez la requête précédante comme sous-requête)
+
+SELECT ?piece WHERE
+{{
+ SELECT ?piece (COUNT(?personne) as ?nb) WHERE
+               {
+                 ?personne :personneDansPiece ?piece.
+                 ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+               }GROUP BY ?piece
+               }FILTER(?nb>=2)
+}
+LIMIT 10
+
+SalleAManger, Salon, Bureau
+
+--------------------------------------------------------------------------------
+
+Quelle(s) pièce(s) est/sont vide(s)?
+
+SELECT ?piece WHERE
+{
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+  NOT EXISTS{?piece :pieceContientPersonne ?personne}
+}
+LIMIT 10
+
+Couloir, Cuisine
+
+--------------------------------------------------------------------------------
+
+Quels sont les suspects restants? (augmentez la requête listant les suspects)
+
+SELECT ?personne WHERE
+{
+  ?personne a :Personne;
+               rdfs:label ?nom;
+              :personneDansPiece ?piece;
+              :estVivant true.
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>
+  FILTER regex(?nom, "e |e$")
+}
+LIMIT 10
+
+LucieNuzyte, SophieStulle, AubinGladeche
+
+--------------------------------------------------------------------------------
+
+Qui est par conséquent innoscent?
+
+SELECT ?personne WHERE
+{
+  	<http://www.lamaisondumeurtre.fr/instances#Chambre> :aPourPieceVoisine ?pvoisin.
+  ?pvoisin :pieceContientPersonne ?personne.
+}
+LIMIT 10
+
+AubinGladeche, VanessaLami, EmmaNiolia, GladisTileri
+
+--------------------------------------------------------------------------------
+
+Quels sont les suspects restants? (augmentez la requête listant les suspects)
+
+SELECT ?personne WHERE
+{
+  ?personne a :Personne;
+               rdfs:label ?nom;
+              :personneDansPiece ?piece;
+              :estVivant true.
+ 	?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+
+         
+  NOT EXISTS{?piece :aPourPieceVoisine <http://www.lamaisondumeurtre.fr/instances#Chambre>}.
+  FILTER regex(?nom, "e |e$")
+}
+LIMIT 10
+
+LucieNuzyte, SophieStulle
+
+--------------------------------------------------------------------------------
+
+Combien y a-t-il d'objets dans la maison?
+
+SELECT COUNT(?obj) WHERE
+{
+  ?obj a :Objet;
+        	:objetDansPiece ?piece.
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>
+}
+LIMIT 10
+
+10 objets
+
+--------------------------------------------------------------------------------
+
+Quels objets ne peuvent pas être l'arme du crime?
+
+SELECT ?obj WHERE
+{
+  <http://www.lamaisondumeurtre.fr/instances#Chambre> :pieceContientObjet ?obj.
+}
+LIMIT 10
+
+Poignard, Oreiller
+
+--------------------------------------------------------------------------------
+
+Quel objet est l'arme du crime?
+
+SELECT ?obj WHERE
+{
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+  NOT EXISTS{?piece :pieceContientPersonne ?personne}.
+  ?piece :pieceContientObjet ?obj
+      
+}
+LIMIT 10
+
+PicAGlace
+
+--------------------------------------------------------------------------------
+
+Qui est le meurtrier? (augmentez la requête listant les suspects)
+
+SELECT ?personne WHERE
+{
+  ?piece :pieceDansMaison <http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre>.
+  NOT EXISTS{?piece :pieceContientObjet ?obj}.
+  ?piece :pieceContientPersonne ?personne.
+      
+}
+LIMIT 10
+
+Sophie Stulle est la tueuse
+
+
+
+
+
+
+
+
+

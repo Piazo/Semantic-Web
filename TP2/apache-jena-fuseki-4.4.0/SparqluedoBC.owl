@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY www "http://www.lamaisondumeurtre.fr#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.lamaisondumeurtre.fr/BC#"
+     xml:base="http://www.lamaisondumeurtre.fr/BC"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:www="http://www.lamaisondumeurtre.fr#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.lamaisondumeurtre.fr/BC"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#aPourPieceVoisine -->
+
+    <owl:ObjectProperty rdf:about="&www;aPourPieceVoisine">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:range rdf:resource="&www;Piece"/>
+        <rdfs:domain rdf:resource="&www;Piece"/>
+        <owl:inverseOf rdf:resource="&www;aPourPieceVoisine"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#maisonContientPiece -->
+
+    <owl:ObjectProperty rdf:about="&www;maisonContientPiece">
+        <rdfs:domain rdf:resource="&www;Maison"/>
+        <rdfs:range rdf:resource="&www;Piece"/>
+        <owl:inverseOf rdf:resource="&www;pieceDansMaison"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#objetDansPiece -->
+
+    <owl:ObjectProperty rdf:about="&www;objetDansPiece">
+        <owl:inverseOf rdf:resource="&www;pieceContientObjet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#personneDansPiece -->
+
+    <owl:ObjectProperty rdf:about="&www;personneDansPiece">
+        <owl:inverseOf rdf:resource="&www;pieceContientPersonne"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#pieceContientObjet -->
+
+    <owl:ObjectProperty rdf:about="&www;pieceContientObjet">
+        <rdfs:range rdf:resource="&www;Objet"/>
+        <rdfs:domain rdf:resource="&www;Piece"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#pieceContientPersonne -->
+
+    <owl:ObjectProperty rdf:about="&www;pieceContientPersonne">
+        <rdfs:range rdf:resource="&www;Personne"/>
+        <rdfs:domain rdf:resource="&www;Piece"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#pieceDansMaison -->
+
+    <owl:ObjectProperty rdf:about="&www;pieceDansMaison"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#estVivant -->
+
+    <owl:DatatypeProperty rdf:about="&www;estVivant">
+        <rdfs:label xml:lang="fr">est vivant</rdfs:label>
+        <rdfs:comment xml:lang="fr">indique si une personne est vivante (True) ou morte (False)</rdfs:comment>
+        <rdfs:domain rdf:resource="&www;Personne"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#Maison -->
+
+    <rdf:Description rdf:about="&www;Maison">
+        <rdfs:label xml:lang="fr">maison</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#Objet -->
+
+    <owl:Class rdf:about="&www;Objet">
+        <rdfs:label xml:lang="fr">objet</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#Personne -->
+
+    <owl:Class rdf:about="&www;Personne">
+        <rdfs:label xml:lang="fr">personne</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr#Piece -->
+
+    <owl:Class rdf:about="&www;Piece">
+        <rdfs:label xml:lang="fr">pièce</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#AldoBermann -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#AldoBermann">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Aldo Bermann</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#PieceTele"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#ArmandChabalet -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#ArmandChabalet">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Armand Chabalet</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#AubinGladeche -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#AubinGladeche">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Aubin Gladèche</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Bureau -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Bureau">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">bureau</rdfs:label>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#AubinGladeche"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Livre"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Revolver"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#VanessaLami"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Chambre -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Chambre">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">chambre</rdfs:label>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Oreiller"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Poignard"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeBain"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#0c7gdr7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#ChambreDEnfant -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#ChambreDEnfant">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">chambre</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Chandelier -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Chandelier">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">chandelier</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Couloir -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Couloir">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">couloir</rdfs:label>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Cuisine"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeBain"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Couteau -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Couteau">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">couteau</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Cuisine -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Cuisine">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">cuisine</rdfs:label>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#PicAGlace"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeBain"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#EauDeJavel -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#EauDeJavel">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">eau de javel</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#EmmaNiolia -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#EmmaNiolia">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Emma Niolia</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#GladisTileri -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#GladisTileri">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Gladis Tileri</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeBain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#GustaveHarie -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#GustaveHarie">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Gustave Harié</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeJeu"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#GuyTarsaich -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#GuyTarsaich">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Guy Tarsaich</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Hall -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Hall">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">hall</rdfs:label>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#SophieStulle"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#JackPot -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#JackPot">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Jack Pot</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#LaFakeMaison -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#LaFakeMaison">
+        <rdf:type rdf:resource="&www;Maison"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#PieceTele"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeJeu"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre">
+        <rdf:type rdf:resource="&www;Maison"/>
+        <rdfs:label xml:lang="fr">la maison</rdfs:label>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Cuisine"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Hall"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeBain"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+        <www:maisonContientPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Lacet -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Lacet">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">lacet</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Livre -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Livre">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">livre</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#LucieNuzyte -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#LucieNuzyte">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Luci Nuzyte</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Marteau -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Marteau">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">marteau</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Nokia3310 -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Nokia3310">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">Nokia 3310</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Oreiller -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Oreiller">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">oreiller</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#PaulOchon -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#PaulOchon">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Paul Ochon</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#PicAGlace -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#PicAGlace">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">pic à glace</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Cuisine"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#PieceTele -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#PieceTele">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">pièce télé</rdfs:label>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#AldoBermann"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaFakeMaison"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Poignard -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Poignard">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">poignard</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Revolver -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Revolver">
+        <rdf:type rdf:resource="&www;Objet"/>
+        <rdfs:label xml:lang="fr">revolver</rdfs:label>
+        <www:objetDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#RichardHabeu -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#RichardHabeu">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Richard Habeu</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#SalleAManger -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#SalleAManger">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">salle à manger</rdfs:label>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Cuisine"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#GuyTarsaich"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Hall"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Nokia3310"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#PaulOchon"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Salon"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#SalleDeBain -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#SalleDeBain">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">salle de bain</rdfs:label>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Cuisine"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#GladisTileri"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Toilette"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#SalleDeJeu -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#SalleDeJeu">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">salle de jeu</rdfs:label>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#GustaveHarie"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaFakeMaison"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Salon -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Salon">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">salon</rdfs:label>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#ArmandChabalet"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chandelier"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Cuisine"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Hall"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#LucieNuzyte"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Marteau"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleAManger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#SophieStulle -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#SophieStulle">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Sophie Stulle</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Hall"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#Toilette -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#Toilette">
+        <rdf:type rdf:resource="&www;Piece"/>
+        <rdfs:label xml:lang="fr">toilette</rdfs:label>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#Couloir"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#EauDeJavel"/>
+        <www:pieceContientPersonne rdf:resource="http://www.lamaisondumeurtre.fr/instances#EmmaNiolia"/>
+        <www:pieceDansMaison rdf:resource="http://www.lamaisondumeurtre.fr/instances#LaMaisonDuMeurtre"/>
+        <www:pieceContientObjet rdf:resource="http://www.lamaisondumeurtre.fr/instances#Lacet"/>
+        <www:aPourPieceVoisine rdf:resource="http://www.lamaisondumeurtre.fr/instances#SalleDeBain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#VanessaLami -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#VanessaLami">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Vanessa Lami</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">true</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Bureau"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.lamaisondumeurtre.fr/instances#0c7gdr7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.lamaisondumeurtre.fr/instances#0c7gdr7">
+        <rdf:type rdf:resource="&www;Personne"/>
+        <rdfs:label xml:lang="fr">Patt Chance</rdfs:label>
+        <www:estVivant rdf:datatype="&xsd;boolean">false</www:estVivant>
+        <www:personneDansPiece rdf:resource="http://www.lamaisondumeurtre.fr/instances#Chambre"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+
