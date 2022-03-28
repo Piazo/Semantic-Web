@@ -1,0 +1,172 @@
+Partie 2
+Question 1
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?film ?gps
+WHERE {
+  	?film a ?Classfilm;
+  	:seDerouleA ?lieu.
+  
+   	?lieu :aPourGPS ?gps.
+    ?Classfilm rdfs:label "movie"@en.
+}
+LIMIT 25
+
+--------------------------------------------------------------------------------
+Q2
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?gps (GROUP_CONCAT(?film) as ?nomfilms) (COUNT(?lesfilms) as ?nbfilm)
+WHERE {
+  	?lesfilms a ?Classfilm;
+  	:seDerouleA ?lieu.
+  
+   	?lieu :aPourGPS ?gps.
+    ?Classfilm rdfs:label "movie"@en.
+  	?lesfilms rdfs:label ?film
+}GROUPBY ?gps
+LIMIT 25
+
+--------------------------------------------------------------------------------
+Question 3
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?gps (GROUP_CONCAT(?nomfilm; separator=" *** ") as ?films) COUNT(?lesfilms)
+WHERE {
+  	?lesfilms a ?Classfilm;
+  	:seDerouleA ?lieu.
+  
+   	?lieu :aPourGPS ?gps.
+    ?Classfilm rdfs:label "film populaire"@fr.
+  	?lesfilms rdfs:label ?nomfilm
+}GROUPBY ?gps
+LIMIT 25
+
+--------------------------------------------------------------------------------
+Q4
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?genre
+WHERE {
+  	?genre a <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#OWLClass_877197e8_b110_4470_8671_6ea66879162a>
+}
+LIMIT 50
+
+--------------------------------------------------------------------------------
+Q5
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?gps (GROUP_CONCAT(?film; separator=" *** ") as ?nomfilms) COUNT(?lesfilms)
+WHERE {
+  	?lesfilms a ?Classfilm;
+  	:seDerouleA ?lieu;
+	:aPourGenre :Romance.
+  
+   	?lieu :aPourGPS ?gps.
+    ?Classfilm rdfs:label "film"@fr.
+  	?lesfilms rdfs:label ?film.
+}GROUPBY ?gps
+LIMIT 25
+
+--------------------------------------------------------------------------------
+Q6
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?gps (GROUP_CONCAT(?film) as ?nomfilms) (COUNT(?lesfilms) as ?nbfilm)
+WHERE {
+  	?lesfilms a ?Classfilm;
+  	:seDerouleA ?lieu.
+  
+   	?lieu :aPourGPS ?gps.
+    ?Classfilm rdfs:label "movie"@en.
+  	?lesfilms rdfs:label ?film.
+  	
+}GROUPBY ?gps HAVING(?nbfilm >2)
+LIMIT 25
+
+--------------------------------------------------------------------------------
+-----------------------------------PARTIE 3-------------------------------------
+--------------------------------------------------------------------------------
+Q2
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?ville
+WHERE {
+  	?ville a ?Classville.
+  
+  ?Classville rdfs:label "ville"@fr.
+}
+LIMIT 25
+
+On recupere les ville, on voit que dans le resultat de la requete il y a :
+http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#MONTPELLIER
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+SELECT ?gps
+WHERE {
+  	<http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#MONTPELLIER> :aPourGPS ?gps
+}
+LIMIT 25
+
+Et donc montpel n'a pas de coordonnées GPS
+--------------------------------------------------------------------------------
+Q3
+
+Dans le champ sparql endpoint, il faut modifier le "/visu/sparql" par "/visu/update"
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+INSERT DATA {
+  	<http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#MONTPELLIER> :aPourGPS "43.61092,3.87723"
+}
+--------------------------------------------------------------------------------
+Q5
+
+On recupere les URI du film broken english et de son lieu
+
+<http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#BROKEN_ENGLISH>
+<http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#lieu50.682394,%204.371231>
+
+maintenant on delete l'URI du lieu
+
+DELETE DATA {
+  <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#BROKEN_ENGLISH> :seDerouleA <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#lieu50.682394,%204.371231>
+}
+
+Maintenant on crée l'URI de new york
+
+INSERT {
+  	<http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#BROKEN_ENGLISH> :seDerouleA <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#New-York>.
+    <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#New-York> rdfs:label "New-York"@fr.
+    <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#New-York> a ?Classlieu.
+}WHERE{
+    ?Classlieu rdfs:label "lieu"@fr.
+}
+
+Et maintenant on ajoute les coordonnées de New York
+
+INSERT DATA{
+  	<http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#New-York> :aPourGPS "40.779897, -73.968565"
+}
+
+--------------------------------------------------------------------------------
+
+
+
+

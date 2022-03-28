@@ -1,0 +1,20 @@
+#controls
+{
+  width : 100%;
+}
+#listLignes
+{
+  width : 20%;
+  max-height : 80%;
+  float:left;
+  overflow-y : scroll;
+}
+#mapContainer
+{
+  width : 79%;
+  float:right;
+}
+#map
+{
+  height: 80%;
+}
