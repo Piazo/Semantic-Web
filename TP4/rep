@@ -1,0 +1,144 @@
+https://lov.linkeddata.es/dataset/lov/.
+Cest un site qui permet de récuperer des ontologies de qualité
+
+OG a été construit par facebook
+Schema a été construit par Google
+
+Ce sont des vocabulaires qui permettent de décrire des pages internet
+
+
+-------
+
+
+Pour le vocabulaire OG on utilise du rdfa avec des meta properties
+Pour le vocab Schema ca ressemble plus a un script sous forme de json
+
+Sur la page télérama on trouve aussi du OG et du schema
+
+Google récupere les données sur différents sites et peut mettre en avant les infos les plus
+redondantes lors d'une recherche google
+
+le json est de plus en plus utilisé car deja cest google le créateur donc ils l'utilisent partout
+mais en plus le json est plus rapide que le rdfa
+
+
+-------
+
+
+Suffit de marquer knowledge graph google api
+
+--------------------------------------------------------------------------------
+ON FAIT LES COMMANDES SUR LE SITE SUIVANT : http://fr.dbpedia.org/sparql
+
+
+Retrouver le film d'artagnan
+select *
+{
+?film rdfs:label "D'Artagnan (film)"@fr
+} LIMIT 100
+
+
+
+select *
+{
+<http://fr.dbpedia.org/resource/D'Artagnan_(film)> ?prop <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse>
+} LIMIT 100
+
+
+select * {
+{
+?film <http://purl.org/dc/terms/subject> <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse>
+}
+UNION
+{
+?film <http://dbpedia.org/ontology/wikiPageWikiLink> <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse>
+}
+} LIMIT 100
+
+
+
+TOUT LES FILMS TOURNES A TOULOUSE OUVERT SUR NOTRE FUSEKI SERVER
+select DISTINCT * {
+  SERVICE <http://fr.dbpedia.org/sparql>{
+		{
+		?film <http://purl.org/dc/terms/subject> <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse>
+		}
+		UNION
+		{
+		?film <http://dbpedia.org/ontology/wikiPageWikiLink> <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse>
+		}
+  }
+} LIMIT 100
+
+
+
+Pour récuperer tout ce qui doit etre mis en place pour insérer un film correctement,
+on visualise le site (on lance visu.html), on fait inspecter, on ouvre la console et
+on regarde tout les films, on copie la requete qui apparait dans la console et on 
+observe tout ce dont on a besoin.
+
+select ?gps (group_concat(?nomfilm;separator=' ** ') as ?lesfilms) (count(?nomfilm) as ?nbfilms) where { 
+  ?film a ?classeFilm. 
+  ?classeFilm rdfs:label "film"@fr. 
+  ?film ?p ?lieu. 
+  ?film rdfs:label ?nomfilm. 
+  ?p rdfs:label "se déroule à"@fr. 
+  ?lieu ?p2 ?gps. 
+  ?p2 rdfs:label "a pour coordonnées GPS"@fr 
+} group by (?gps) 
+
+
+
+
+
+
+
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX peup: <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX peup: <http://www.semanticweb.org/nathalie/ontologies/cinemaTPpeup#>
+Prefix : <http://www.semanticweb.org/nathalie/ontologies/cinemaTP#>
+
+DELETE {?film :seDerouleA peup:Toulouse}
+INSERT{
+?film a :OWLClass_b3ec988b_3df8_44bc_bb90_2242c83e3158;
+		:seDerouleA peup:Toulouse;
+		rdfs:label ?nomfilm;
+		:aPourGenre ?genre.
+
+
+peup:Toulouse :aPourGPS "43.604652,1.444209"
+}WHERE{
+	SERVICE <http://fr.dbpedia.org/sparql>{
+		{ ?film <http://purl.org/dc/terms/subject> <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse>}
+		UNION
+		{ ?film <http://dbpedia.org/ontology/wikiPageWikiLink> <http://fr.dbpedia.org/resource/Catégorie:Film_tourné_à_Toulouse> }
+    ?film <http://fr.dbpedia.org/property/titre> ?nomfilm.
+    ?film <http://fr.dbpedia.org/property/genre> ?genrefilm.
+    ?genrefilm rdfs:label ?genre
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
